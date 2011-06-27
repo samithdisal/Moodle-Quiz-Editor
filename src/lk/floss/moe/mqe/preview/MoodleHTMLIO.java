@@ -45,6 +45,7 @@ public abstract class MoodleHTMLIO {
         Source source = new DOMSource(document);
         Result result = new StreamResult(writer);
         
+        
         getTransformer().transform(source, result);
         
         return writer.toString();

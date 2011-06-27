@@ -17,11 +17,15 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.AbstractTableModel;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import lk.floss.moe.mqe.MoodleXML;
 import lk.floss.moe.mqe.MoodleXMLIO;
+import lk.floss.moe.mqe.preview.MoodleHTML;
+import lk.floss.moe.mqe.preview.MoodleHTMLIO;
 import lk.floss.moe.mqe.quiz.Question;
 import lk.floss.moe.mqe.quiz.Quiz;
+import lk.floss.moe.mqe.font.SinhalaFontResource;
 import org.w3c.dom.Document;
 
 /**
@@ -99,8 +103,21 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
         questionsTable.updateUI();
-
-
+        try {
+            String html = MoodleHTMLIO.getHtmlPreview(MoodleHTML.generateHTML(quiz)); 
+//            for(Question ques:quiz.getQuestions()) {
+//                html += "\n" + MoodleHTMLIO.getHtmlPreview(MoodleHTML.generateQuestionHTML(ques));
+//            }
+            System.out.println(html);
+            quizPreviewPane.setText(html);
+            
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -155,6 +172,8 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         questionsTable = new javax.swing.JTable();
         previewTab = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        quizPreviewPane = new javax.swing.JEditorPane();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         newQuizMI = new javax.swing.JMenuItem();
@@ -204,6 +223,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         questionsTab.setLayout(new java.awt.BorderLayout());
 
+        questionsTable.setFont(SinhalaFontResource.getBhashita(12));
         questionsTable.setModel(quizTableModel);
         questionsTable.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(questionsTable);
@@ -213,16 +233,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         tabbedPane.addTab("Questions", questionsTab);
 
-        javax.swing.GroupLayout previewTabLayout = new javax.swing.GroupLayout(previewTab);
-        previewTab.setLayout(previewTabLayout);
-        previewTabLayout.setHorizontalGroup(
-            previewTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
-        );
-        previewTabLayout.setVerticalGroup(
-            previewTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
-        );
+        previewTab.setLayout(new java.awt.BorderLayout());
+
+        quizPreviewPane.setContentType("text/html");
+        quizPreviewPane.setEditable(false);
+        quizPreviewPane.setFont(SinhalaFontResource.getBhashita(12));
+        quizPreviewPane.setText("");
+        jScrollPane2.setViewportView(quizPreviewPane);
+
+        previewTab.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         tabbedPane.addTab("Preview", previewTab);
 
@@ -308,6 +327,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu heloMenu;
     private javax.swing.JMenuItem helpAboutMI;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuBar mainMenuBar;
@@ -317,6 +337,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel previewTab;
     private javax.swing.JPanel questionsTab;
     private javax.swing.JTable questionsTable;
+    private javax.swing.JEditorPane quizPreviewPane;
     private javax.swing.JMenuItem saveAsMI;
     private javax.swing.JMenuItem saveMI;
     private javax.swing.JButton shortAnswerButton;

@@ -48,17 +48,17 @@ public abstract class MoodleHTML {
 
         //XML Document
         Document document = getBuilder().newDocument();
-
-        //Quiz element the root of the DOM
+        
+        //HTML element the root of the DOM
         Element t_html = document.createElement("html");
         Element t_head = document.createElement("head");
         
         //<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
-        Element t_meta_utf = document.createElement("meta");
-        t_meta_utf.setAttribute("http-equiv", "Content-type");
-        t_meta_utf.setAttribute("content", "text/html; charset=UTF-8");
+        //Element t_meta_utf = document.createElement("meta");
+        //t_meta_utf.setAttribute("http-equiv", "Content-type");
+        //t_meta_utf.setAttribute("content", "text/html; charset=UTF-8");
         
-        t_head.appendChild(t_meta_utf);
+        //t_head.appendChild(t_meta_utf);
         t_html.appendChild(t_head);
         
         Element t_body = document.createElement("body");
@@ -67,6 +67,12 @@ public abstract class MoodleHTML {
         }
         t_html.appendChild(t_body);
         document.appendChild(t_html);
+        return document;
+    }
+    
+    public static Document generateQuestionHTML(Question question) throws ParserConfigurationException {
+        Document document = getBuilder().newDocument();
+        document.appendChild(genQuestion(question, document));
         return document;
     }
 
