@@ -166,6 +166,7 @@ public class MainFrame extends javax.swing.JFrame {
         exitMI = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         heloMenu = new javax.swing.JMenu();
+        helpAboutMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Moodle Quiz Editor");
@@ -266,6 +267,15 @@ public class MainFrame extends javax.swing.JFrame {
         mainMenuBar.add(editMenu);
 
         heloMenu.setText("Help");
+
+        helpAboutMI.setText("About");
+        helpAboutMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpAboutMIActionPerformed(evt);
+            }
+        });
+        heloMenu.add(helpAboutMI);
+
         mainMenuBar.add(heloMenu);
 
         setJMenuBar(mainMenuBar);
@@ -286,11 +296,17 @@ public class MainFrame extends javax.swing.JFrame {
         ShortAnswersWiz wiz = new ShortAnswersWiz(this);
         wiz.run();
     }//GEN-LAST:event_shortAnswerButtonActionPerformed
+
+    private void helpAboutMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpAboutMIActionPerformed
+        new AboutDlg(this, false).setVisible(true);
+    }//GEN-LAST:event_helpAboutMIActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMI;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu heloMenu;
+    private javax.swing.JMenuItem helpAboutMI;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
