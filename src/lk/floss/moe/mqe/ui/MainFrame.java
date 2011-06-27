@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.AbstractTableModel;
 import javax.xml.parsers.ParserConfigurationException;
@@ -278,6 +279,11 @@ public class MainFrame extends javax.swing.JFrame {
         exitMI.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         exitMI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lk/floss/moe/mqe/resource/image/pix/t/delete.gif"))); // NOI18N
         exitMI.setText("Exit");
+        exitMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMIActionPerformed(evt);
+            }
+        });
         fileMenu.add(exitMI);
 
         mainMenuBar.add(fileMenu);
@@ -319,6 +325,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void helpAboutMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpAboutMIActionPerformed
         new AboutDlg(this, false).setVisible(true);
     }//GEN-LAST:event_helpAboutMIActionPerformed
+
+    private void exitMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMIActionPerformed
+        if(!quiz.getQuestions().isEmpty()) {
+            if(JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "MQE Exit", JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION) {
+                return;
+            }
+        }
+        System.exit(0);
+    }//GEN-LAST:event_exitMIActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu editMenu;
