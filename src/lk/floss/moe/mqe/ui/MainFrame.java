@@ -72,8 +72,12 @@ public class MainFrame extends javax.swing.JFrame {
                     break;
                 case 2:
                     res = "Edit";
+                    break;
                 case 3:
                     res = "Delete";
+                    break;
+                default:
+                    res = "Unknown";
             }
             return res;
         }

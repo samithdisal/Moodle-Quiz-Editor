@@ -41,6 +41,7 @@ public class ShortAnswersWiz extends QuestionWiz {
             panel.addAnswerToQuestion(q);
         }
         mf.quiz.addShortAnswerQuestion(q);
+        mf.updateModel();
         setVisible(false);
         dispose();
     }

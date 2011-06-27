@@ -51,7 +51,7 @@ public abstract class MoodleXML {
 		
 		//For each question handle the question depending on it's type
 		for (Question question : quiz.getQuestions()) {
-			Element q = document.createElement("No Element");
+			Element q = document.createElement("NoElement");
 			if(question.getType()==QuestionType.TrueFalse) {
 				q = trueFalse((TrueFalseQuestion)question, document);
 			} else if(question.getType()==QuestionType.ShortAnswer) {
@@ -106,7 +106,7 @@ public abstract class MoodleXML {
 			res.appendChild(fb);
 			q.appendChild(res);
 		}
-		return null;	
+		return q;
 	}
 	
 	
