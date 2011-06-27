@@ -10,12 +10,9 @@
  */
 package lk.floss.moe.mqe.ui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.AbstractTableModel;
@@ -74,23 +71,9 @@ public class MainFrame extends javax.swing.JFrame {
                     res = question.getType().getName();
                     break;
                 case 2:
-                    res = new JButton("Edit");
-                    ((JButton) res).addActionListener(new ActionListener() {
-
-                        @Override
-                        public void actionPerformed(ActionEvent ae) {
-                            editQuestion(question);
-                        }
-                    });
+                    res = "Edit";
                 case 3:
-                    res = new JButton("Delete");
-                    ((JButton) res).addActionListener(new ActionListener() {
-
-                        @Override
-                        public void actionPerformed(ActionEvent ae) {
-                            deleteQuestion(question);
-                        }
-                    });
+                    res = "Delete";
             }
             return res;
         }
