@@ -20,6 +20,7 @@
 
 #include "mqeapplication.h"
 
+// Let us declare the extern singleton global instance of MQEApplication
 MQEApplication g_mqe;
 
 MQEApplication::MQEApplication()

@@ -21,15 +21,42 @@
 #ifndef MQEAPPLICATION_H
 #define MQEAPPLICATION_H
 
+/**
+ * @brief MQE Main Application Class
+ **/
+
 class MQEApplication
 {
 
 public:
-MQEApplication();
-virtual ~MQEApplication();
-int run(int*, char***);
+  
+  /**
+   * @brief Construct a new MQEApplication instance
+   *
+   **/
+  MQEApplication();
+  
+  /**
+   * @brief Destruct MQEApplication instance
+   *
+   **/
+  virtual ~MQEApplication();
+  
+  
+  /**
+   * @brief Run MQE Application
+   *
+   * @param  argc Pointer to argc
+   * @param  argv pointer to argv
+   * @return int
+   **/
+  int run(int*, char***);
 };
 
+
+/**
+ * @brief MQEApplication singleton global instance
+ **/
 extern MQEApplication g_mqe;
 
 #endif // MQEAPPLICATION_H
